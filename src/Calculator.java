@@ -1,9 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
+
+
 
 public class Calculator {
 
@@ -122,30 +120,19 @@ public class Calculator {
         });
 
 
-        buttonDelete.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                total2 = 0;
-                textResultat.setText("");
-            }
+        buttonDelete.addActionListener(e -> {
+            total2 = 0;
+            textResultat.setText("");
         });
 
-        try {
+
             buttonEqual.addActionListener(e -> {
 
                 switch (math_operator) {
-                    case '+':
-                        total2 = total1 + Double.parseDouble(textResultat.getText());
-                        break;
-                    case '-':
-                        total2 = total1 - Double.parseDouble(textResultat.getText());
-                        break;
-                    case '/':
-                        total2 = total1 / Double.parseDouble(textResultat.getText());
-                        break;
-                    case '*':
-                        total2 = total1 * Double.parseDouble(textResultat.getText());
-                        break;
+                    case '+' -> total2 = total1 + Double.parseDouble(textResultat.getText());
+                    case '-' -> total2 = total1 - Double.parseDouble(textResultat.getText());
+                    case '/' -> total2 = total1 / Double.parseDouble(textResultat.getText());
+                    case '*' -> total2 = total1 * Double.parseDouble(textResultat.getText());
                 }
 
 
@@ -155,9 +142,6 @@ public class Calculator {
 
             });
 
-        } catch (Exception e){
-            System.out.println(e);
-        }
 
     }
 
@@ -172,6 +156,8 @@ public class Calculator {
         math_operator = btnText.charAt(0);
         total1 = total1 + Double.parseDouble(textResultat.getText());
         textResultat.setText("");
+
+
     }
     private void printOutRightSide() {
         textResultat.setHorizontalAlignment(textResultat.RIGHT);
