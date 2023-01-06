@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class Calculator {
@@ -22,6 +23,7 @@ public class Calculator {
     private JButton buttonDelete;
     private JButton btnDivide;
     private JButton btnMultiply;
+    private JTextField secondTxtFiel;
 
     private double total1 = 0.0;
     private double total2 = 0.0;
@@ -105,6 +107,7 @@ public class Calculator {
         buttonPLus.addActionListener(e -> {
 
             String buttonText = buttonPLus.getText();
+
             getOperator(buttonText);
 
             printOutRightSide();
@@ -123,8 +126,8 @@ public class Calculator {
         buttonDelete.addActionListener(e -> {
             total2 = 0;
             textResultat.setText("");
+            secondTxtFiel.setText("");
         });
-
 
             buttonEqual.addActionListener(e -> {
 
@@ -135,7 +138,7 @@ public class Calculator {
                     case '*' -> total2 = total1 * Double.parseDouble(textResultat.getText());
                 }
 
-
+                secondTxtFiel.setText((int)total1 + "+" + textResultat.getText());
                 String s1 = Double.toString(total2);
                 textResultat.setText(s1);
                 total1 = 0;
@@ -143,13 +146,23 @@ public class Calculator {
             });
 
 
+        secondTxtFiel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+
+            }
+        });
     }
 
     private void font72() {
         Font font = textResultat.getFont();
+        Font fontSecond = secondTxtFiel.getFont();
         float size = 72.0f;
         font = font.deriveFont(size);
         textResultat.setFont(font);
+        secondTxtFiel.setFont(font);
+
     }
 
     private void getOperator(String btnText){
@@ -161,6 +174,7 @@ public class Calculator {
     }
     private void printOutRightSide() {
         textResultat.setHorizontalAlignment(textResultat.RIGHT);
+        secondTxtFiel.setHorizontalAlignment(textResultat.RIGHT);
     }
 
     public static void main(String[] args) {
